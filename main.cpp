@@ -63,7 +63,7 @@ int main()
         cout << "invalid char entered" << endl;
     }
 
-    cout << "Before removals: " << endl;
+    cout << "Tree: " << endl;
     print(heap, size);
     cout << " removals:" << endl;
     remAll(heap, size);
@@ -148,12 +148,10 @@ void remAll(int h[], int& s)
 }
 void print(int h[] , int s)
 {
-    for(int i = 0; i < s; ++i)
-    {
-        cout << h[i] << endl;
-    }
-    cout << endl;
-
+  for(int x=0; x<s; ++x)
+  {
+    cout << h[x] << endl;
+  }
 }
 void swap(int& a, int& b)
 {
