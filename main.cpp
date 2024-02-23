@@ -22,7 +22,7 @@ void swapDown(int h[] , int i, int s);
 void insert(int h[], int& s, int num);
 int getMax(int h[] , int& s);
 void remAll(int h[], int& s);
-void print(int h[] , int s);
+void print(int h[] , int s , int ix, int count);
 void swap(int& a, int& b); // not sure if it would be allowed to just used the stdlib one
 int main()
 {
@@ -64,7 +64,7 @@ int main()
     }
 
     cout << "Tree: " << endl;
-    print(heap, size);
+    print(heap, size, 0, 0);
     cout << " removals:" << endl;
     remAll(heap, size);
 }
@@ -139,18 +139,58 @@ int getMax(int h[] , int& s)
 }
 void remAll(int h[], int& s)
 {
-    while(s>0)
+  int curMax;
+  while((curMax=getMax(h, s)) != -1)//check heap to not be -1 so not to print it
     {
         cout << getMax(h, s)<< endl;
 
     }
     cout << endl;//genius
 }
-void print(int h[] , int s)
+/*
+from mr galbraiths board, basically just translating this to be used here
+
+void print(int index, int count, int end)
 {
-  for(int x=0; x<s; ++x)
+if((index*2)+1 < end )
+{
+  print((index*2)+1, count+1, end);
+  
+}
+for(int x=0; x<count;x++)
+{
+  cout << '\t';
+  
+}
+cout << arr[index] << endl;
+
+
+}
+
+*/
+
+
+
+
+void print(int h[] , int s , int ix , int count)
+{
+  // change thisif(ix < s)
+  if(ix < s && h[ix] != -1)
   {
-    cout << h[x] << endl;
+    print(h, s, rightC(ix), count+1);
+  
+
+    //visual representation 
+    for(int i = 0; i < s; ++i)
+    {
+        cout << '\t';
+    }
+
+  
+
+    cout << h[ix] << endl;
+    //print left
+    print(h, s, leftC(ix), count+1);
   }
 }
 void swap(int& a, int& b)
